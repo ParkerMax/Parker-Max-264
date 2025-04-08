@@ -1,8 +1,5 @@
 ---
 title: "Parker-Max-264"
-project:
-  type: website
-  output-dir:  docs
 ---
 
 ```         
