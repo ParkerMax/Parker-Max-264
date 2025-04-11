@@ -22,14 +22,6 @@ website:
           - href: mini-project2.qmd
             text: "Mini-Project 2: Data Acquisition"
 
-  page-footer:
-    left: |
-      &copy; Parker Max, 2025<br>
-      All content licensed under 
-      [CC BY-NC-SA 4.0](http://creativecommons.org/licenses/by-nc-sa/4.0/)
-    right: |
-      Site built with <a href='https://quarto.org/'>Quarto</a>
-
 format:
   html:
     theme: [yeti, theme.scss] 
