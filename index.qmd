@@ -4,7 +4,7 @@ sidebar: false
 about:
   template: trestles
   image-width: 20em
-  image-shape: square
+  image-shape: rounded
   image: images/DSC07483.jpg
 ---
 
