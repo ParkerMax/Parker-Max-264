@@ -49,7 +49,8 @@ print(route_map)
 
 -   We can use the leaflet library
 
-```{r echo=FALSE}
+```{r}
+#| include: false
 library(leaflet)
 
 # Create a leaflet map
@@ -103,7 +104,8 @@ print(leafletmap)
 
 We can use OpenStreetMap data to draw a map that will take us on the roads!
 
-```{r echo=FALSE}
+```{r}
+#| include: false
 library(leaflet)
 library(sf)
 library(tidyverse)
@@ -157,6 +159,7 @@ map <- leaflet() |>
 ## Leaflet ORS Map
 
 ```{r}
+#| echo: false
 library(htmltools)
 htmltools::tagList(map)
 
