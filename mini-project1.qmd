@@ -5,12 +5,10 @@ format: html
 
 # Mini-Project 1: Maps
 
-This project explores spatial data using `leaflet`, `sf`, and other R mapping tools! Below are my two interactive maps. However, you can also find static maps on my GitHub page.
+This project explores spatial data using `leaflet`, `sf`, and other R mapping tools! Below are my two interactive maps. However, you can also find static maps on my GitHub
 
 **[View the source code on GitHub](https://github.com/ParkerMax/SDS264_F24/blob/main/Parker_Max_Mini_Project_1.qmd)**
 ---
-
-**INTERACTIVE MAP #1: PCE by US STATE**
 
 ```{r}
 library(leaflet)
@@ -65,6 +63,7 @@ This is an interactive leaflet map. It shows Personal Consumption Expenditure (P
 **INTERACTIVE MAP #2: WHICH STATES HAVE AT LEAST ONE NATIONAL PARK?**
 
 ```{r}
+#| echo: false
 nps_parks <- read_csv("nps_parks.csv")
 nps_parks$state <- tolower(nps_parks$state) #when I manually entered the data, the states are lower case.
 us_states <- map_data("state")

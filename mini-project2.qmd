@@ -4,7 +4,9 @@ format: html
 
 # Mini-Project 2: Data Acquisition
 
-This project works with scraping techniques to find data on websites. ## Introduction
+This project works with scraping techniques to find data on websites. 
+
+## Introduction
 Initially, we wanted to analyze data related to running, collegiate D3 track and field race times and statistics. However, we faced difficulties when we tried to scrape the data from the website. We decided to pivot to economics as we are both interested in the subject. We chose to gather GDP data by country from Wikipedia because it is challenging to find a comprehensive CSV file with the information of a GDP forecast vs. actual forecast and then comparing it to population data. By scraping and tidying this data, we can use this data to explore economic trends and compare GDP across different countries.
 
 ## Sources
