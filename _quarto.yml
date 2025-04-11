@@ -1,21 +1,39 @@
 project:
   type: website
+  output-dir: docs
+  render:
+    - "*.qmd"
 
 website:
   title: "Parker Max"
+  favicon: images/DSC07483.JPG
   navbar:
     left:
-      - text: "Home"
-        href: index.qmd
-      - text: "GitHub"
-        href: GitHub.qmd
-      - text: "R Tip of the Day"
-        href: RTip.qmd
-      - text: "Mini-Project 1: Maps"
-        href: mini-project1.qmd
-      - text: "Mini-Project 2: Data Acquisition"
-        href: mini-project2.qmd
+      - href: index.qmd
+        text: Home
+      - href: GitHub.qmd
+        text: GitHub
+      - href: RTip.qmd
+        text: R Tip of the Day
+      - text: Mini-Projects
+        menu:
+          - href: mini-project1.qmd
+            text: "Mini-Project 1: Maps"
+          - href: mini-project2.qmd
+            text: "Mini-Project 2: Data Acquisition"
+
+  page-footer:
+    left: |
+      &copy; Parker Max, 2025<br>
+      All content licensed under 
+      [CC BY-NC-SA 4.0](http://creativecommons.org/licenses/by-nc-sa/4.0/)
+    right: |
+      Site built with <a href='https://quarto.org/'>Quarto</a>
+
 format:
   html:
-    theme: cosmo
+    theme: [yeti, theme.scss] 
     toc: true
+    code-overflow: wrap
+
+editor: visual

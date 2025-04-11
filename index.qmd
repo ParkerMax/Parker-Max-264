@@ -1,11 +1,17 @@
 ---
 title: "Parker Max"
 sidebar: false
+about:
+  id: intro-heading
+  template: trestles
+  image-width: 20em
+  image-shape: square
+  image: images/DSC07483.jpg
 ---
 
 ## Hi, I'm **Parker!**
 
-![I'm a student at St. Olaf College graduating in 2026 pursuing a Bachelor of Arts in Quantitative Economics with an Emphasis in Finance and a Concentration in Statistics & Data Science. I have internship experience in asset management and plan to pursue investment research upon graduation. This website showcases the work I've done in SDS 264, including projects on mapping, data acquisition, and more. It also includes my GitHub and an about section. Thanks for being here!](images/1718241891236.jpeg){fig-align="left" width="530"}
+I'm a student at St. Olaf College graduating in 2026 pursuing a Bachelor of Arts in Quantitative Economics with an Emphasis in Finance and a Concentration in Statistics & Data Science. I have internship experience in asset management and plan to pursue investment research upon graduation. This website showcases the work I've done in SDS 264, including projects on mapping, data acquisition, and more. It also includes my GitHub and an about section. Thanks for being here!
 
 **Contact:\
 **Email: [max1\@stolaf.edu](max1@stolaf.edu)
