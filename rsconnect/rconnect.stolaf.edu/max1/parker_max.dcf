@@ -5,7 +5,7 @@ account: max1
 server: rconnect.stolaf.edu
 hostUrl: https://rconnect.stolaf.edu/__api__
 appId: 915
-bundleId: 2449
+bundleId: 2452
 url: https://rconnect.stolaf.edu/content/6b639456-3b7f-4b55-8a31-e6b6ecf02f50/
 version: 1
 asMultiple: FALSE
