@@ -7,8 +7,7 @@ format: html
 
 This project explores spatial data using `leaflet`, `sf`, and other R mapping tools! Below are my two interactive maps. However, you can also find static maps on my GitHub
 
-**[View the source code on GitHub](https://github.com/ParkerMax/SDS264_F24/blob/main/Parker_Max_Mini_Project_1.qmd)**
----
+[**View the source code on GitHub**](https://github.com/ParkerMax/SDS264_F24/blob/main/Parker_Max_Mini_Project_1.qmd)
 
 ```{r}
 library(leaflet)
@@ -61,30 +60,6 @@ leaflet(states) |> # Generate interactive map
 This is an interactive leaflet map. It shows Personal Consumption Expenditure (PCE) data by state for 2023 in millions of dollars. The states are color coded using a gradient, where lighter colors represents lower PCE values and darker colors indicates higher values. Hovering over the states shows the data from the Bureau of Economic Analysis shows that Texas (\$2,000M+), California (\$2,500M+), and Florida (\$1,300M+) have the highest consumer spending. In contrast, states in the Midwest and Mountain West generally have lower PCE, with many below \$500M. This shows the regional differences in economic activity and consumer spending across the U.S.
 
 **INTERACTIVE MAP #2: WHICH STATES HAVE AT LEAST ONE NATIONAL PARK?**
-
-```{r}
-#| echo: false
-nps_parks <- read_csv("nps_parks.csv")
-nps_parks$state <- tolower(nps_parks$state) #when I manually entered the data, the states are lower case.
-us_states <- map_data("state")
-map2 <- us_states |> 
-  left_join(nps_parks, by = c("region" = "state")) #joins the parks data with the mapping data
-ggplot(map2, aes(long, lat, group = group, fill = factor(park))) + #treated as a categorical (factor) variable rather than a continuous one
-  geom_polygon(color = "black") +
-  scale_fill_manual(
-    values = c("1" = "darkgreen", "0" = "chocolate4"), #the data is 0 = No, 1 = yes, there is a park in this state
-    name = "Has a National Park",
-    labels = c("No", "Yes")
-  ) +
-  theme_void() +
-  labs(title = "US States with a National Park",
-       caption = "Data Source: National Park Service & Wikipedia (Manual Entry)")
-
-
-
-```
-
-This choropleth map of the United States showing which states have at least one national park. States with at least one national park are shaded in dark green, while those without any are shaded in brown (the two colors of the National Parks Service!). The maps shows that the majority of US States has at least one national park in their state. The data on whether or not the states have a national park comes from the National Park Service and Wikipedia, then manually entered into a csv file.
 
 ```{r}
 states <- read_sf("https://rstudio.github.io/leaflet/json/us-states.geojson")
