@@ -1,22 +1,21 @@
 project:
   type: website
-  output-dir:  docs
 
 website:
-  title: "Parker-Max-264"
+  title: "Parker Max"
   navbar:
     left:
       - text: "Home"
         href: index.qmd
-      - GitHub.qmd
-      - Projects.qmd
-      - About.qmd 
-
+      - text: "GitHub"
+        href: GitHub.qmd
+      - text: "R Tip of the Day"
+        href: RTip.qmd
+      - text: "Mini-Project 1: Maps"
+        href: mini-project1.qmd
+      - text: "Mini-Project 2: Data Acquisition"
+        href: mini-project2.qmd
 format:
   html:
     theme: cosmo
-    css: styles.css
     toc: true
-
-editor: visual
-
