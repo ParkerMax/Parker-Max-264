@@ -1,7 +1,6 @@
 ---
 title: "Parker Max"
 sidebar: false
-theme: cosmos
 ---
 
 ## Hi, I'm **Parker!**
