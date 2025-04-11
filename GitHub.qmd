@@ -1,0 +1,6 @@
+---
+title: "GitHub"
+format: html
+---
+
+View my GitHub Repository [here](https://github.com/ParkerMax/SDS264_F24) as well as my website source code [here](https://github.com/ParkerMax/Parker-Max-264)!

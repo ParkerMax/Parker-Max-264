@@ -1,0 +1,170 @@
+---
+title: 'R Tip of The Day: Level Up Your Maps on R with Routes'
+author: "Parker Max"
+format: html
+resource_files:
+- "RTip_files/figure-revealjs/unnamed-chunk-1-1.png"
+- "RTip_files/libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css"
+---
+
+One of the tasks as part of the course, is an R Tip of the Day, a presentation about any interesting features that we won't talk about in class. I decided to show how you can use R to plan a road trip!
+
+## Have an upcoming trip? Use R to plan your route! {auto-animate="true"}
+
+Starting with the basics...
+
+```{r echo=FALSE}
+# Load libraries
+library(maps)
+library(ggplot2)
+
+# Create a simple route with lat/lon points
+route <- data.frame(
+  lon = c(-93.184106, -90.1994, -81.741524, -81.1039858, -91.5299106, -93.184106),  # St. Olaf to St. Louis to Appalachia to Iowa to St. Olaf
+  lat = c(44.4605291, 38.6273, 36.547841, 38.0531294, 41.6612561, 44.4605291)
+)
+
+usa_map <- map_data("state")
+route_map <- ggplot() +
+  geom_polygon(data = usa_map, aes(x = long, y = lat, group = group), fill = "gray", color = "white") +  # Map background
+  geom_path(data = route, aes(x = lon, y = lat), color = "black", linewidth = 1) +  # Route line
+  geom_point(data = route, aes(x = lon, y = lat), color = "gold", size = 1) +  # Route points
+  theme_minimal() +
+  labs(title = "Spring Break Road Trip Route")
+
+
+
+
+
+```
+
+## 
+
+```{r}
+#| echo: false
+print(route_map)
+```
+
+## Let's make the route a little more interactive {auto-animate="true"}
+
+-   We can use the leaflet library
+
+```{r echo=FALSE}
+library(leaflet)
+
+# Create a leaflet map
+leafletmap <- leaflet() |>
+  addTiles() |>  # Base map
+  addPolylines(
+    lng = c(-93.184106, -90.1994, -81.741524, -81.1039858, -91.5299106, -93.184106),  # Example: St. Olaf to St. Louis to Appalachia to Iowa to St. Olaf
+  lat = c(44.4605291, 38.6273, 36.547841, 38.0531294, 41.6612561, 44.4605291),
+    color = "black", weight = 4, opacity = 0.7
+  ) |>
+  addMarkers(lng = -93.184106, lat = 44.4605291, popup = "St. Olaf") |>
+  addMarkers(lng = -90.1994, lat = 38.6273, popup = "St. Louis") |>
+  addMarkers(lng = -81.741524, lat = 36.547841, popup = "Tennessee") |>
+  addMarkers(lng = -81.1039858, lat = 38.0531294, popup = "New River Gorge National Park") |>
+  addMarkers(lng = -91.5299106, lat = 41.6612561, popup = "Iowa City") |>
+    addMarkers(lng = -93.184106, lat = 44.4605291, popup = "St. Olaf") 
+
+
+  
+```
+
+## Leaflet Result
+
+```{r}
+#| echo: false
+library(leaflet)
+library(htmltools)
+
+
+# Create a leaflet map
+leafletmap <- leaflet() |>
+  addTiles() |>  # Base map
+  addPolylines(
+    lng = c(-93.184106, -90.1994, -81.741524, -81.1039858, -91.5299106, -93.184106),  # Example: St. Olaf to St. Louis to Appalachia to Iowa to St. Olaf
+  lat = c(44.4605291, 38.6273, 36.547841, 38.0531294, 41.6612561, 44.4605291),
+    color = "black", weight = 4, opacity = 0.7
+  ) |>
+  addMarkers(lng = -93.184106, lat = 44.4605291, popup = "St. Olaf") |>
+  addMarkers(lng = -90.1994, lat = 38.6273, popup = "St. Louis") |>
+  addMarkers(lng = -81.741524, lat = 36.547841, popup = "Tennessee") |>
+  addMarkers(lng = -81.1039858, lat = 38.0531294, popup = "New River Gorge National Park") |>
+  addMarkers(lng = -91.5299106, lat = 41.6612561, popup = "Iowa City") |>
+  addMarkers(lng = -93.184106, lat = 44.4605291, popup = "St. Olaf") 
+htmltools::tagList(leafletmap)
+print(leafletmap)
+
+  
+```
+
+## The map still doesn't give us a realistic route {auto-animate="true"}
+
+We can use OpenStreetMap data to draw a map that will take us on the roads!
+
+```{r echo=FALSE}
+library(leaflet)
+library(sf)
+library(tidyverse)
+library(httr)
+library(jsonlite)
+library(geojsonsf)
+library(htmltools)
+
+
+# OpenRouteService API Key
+ors_api_key <- "5b3ce3597851110001cf62481317668436c3406ba3005813fbf373b0"
+
+# Updated coordinates for the route
+coordinates <- list(
+  coordinates = list(
+    c(-93.184106, 44.4605291),  # St. Olaf
+    c(-90.1994, 38.6273),       # St. Louis
+    c(-81.741524, 36.547841),   # Tennessee
+    c(-81.1039858, 38.0531294), # New River Gorge
+    c(-91.5299106, 41.6612561), # Iowa City
+    c(-93.184106, 44.4605291)   # Back to St. Olaf
+  )
+)
+
+# Request driving route from ORS API, this sometimes would time out.
+response <- httr::POST(
+  url = "https://api.openrouteservice.org/v2/directions/driving-car/geojson",
+  add_headers("Authorization" = ors_api_key, "Content-Type" = "application/json"),
+  body = jsonlite::toJSON(coordinates, auto_unbox = TRUE),
+  encode = "json"
+)
+
+
+# Parse API response correctly to get the route map
+route_data <- content(response, as = "text", encoding = "UTF-8")
+route_geojson <- geojsonsf::geojson_sf(route_data) # Convert to sf object
+#Interactive route map
+map <- leaflet() |>
+  addTiles() |>
+  addPolylines(data = route_geojson, color = "black", weight = 3, opacity = 0.8) |>
+  addMarkers(lng = -93.184106, lat = 44.4605291, popup = "St. Olaf") |>
+  addMarkers(lng = -90.1994, lat = 38.6273, popup = "St. Louis") |>
+  addMarkers(lng = -81.741524, lat = 36.547841, popup = "Tennessee") |>
+  addMarkers(lng = -81.1039858, lat = 38.0531294, popup = "New River Gorge NP") |>
+  addMarkers(lng = -91.5299106, lat = 41.6612561, popup = "Iowa City") |>
+  setView(lng = -90, lat = 40, zoom = 4)
+
+
+```
+
+## Leaflet ORS Map
+
+```{r}
+library(htmltools)
+htmltools::tagList(map)
+
+print(map)
+```
+
+## Headaches that I ran into
+
+-   ORS API occasionally timed out or returned errors when processing long routes
+-   ORS expects numeric values, but if any coordinate accidentally becomes a string or list, it causes errors, must convert to JSON
+-   I still had to add the coordinates with the leaflet map. I couldn't figure out anyways to automate this

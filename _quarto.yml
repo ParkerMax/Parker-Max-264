@@ -6,9 +6,11 @@ website:
   title: "Parker-Max-264"
   navbar:
     left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
+      - text: "Home"
+        href: index.qmd
+      - GitHub.qmd
+      - Projects.qmd
+      - About.qmd 
 
 format:
   html:

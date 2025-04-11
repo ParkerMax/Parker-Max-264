@@ -1,0 +1,110 @@
+---
+title: "Mini-Project 2: Data Acquisition"
+format: html
+
+# Mini-Project 2: Data Acquisition
+
+This project works with scraping techniques to find data on websites. ## Introduction
+Initially, we wanted to analyze data related to running, collegiate D3 track and field race times and statistics. However, we faced difficulties when we tried to scrape the data from the website. We decided to pivot to economics as we are both interested in the subject. We chose to gather GDP data by country from Wikipedia because it is challenging to find a comprehensive CSV file with the information of a GDP forecast vs. actual forecast and then comparing it to population data. By scraping and tidying this data, we can use this data to explore economic trends and compare GDP across different countries.
+
+## Sources
+
+"https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(nominal)": Used to get our nominal GDP data from wikipedia. Table consists of various data, but we only use Country and GDP.
+
+"https://en.wikipedia.org/wiki/List_of_countries_and_dependencies_by_population": Used to get our population data from wikipedia. Table consists of various data, but we only use Country and population.
+---
+
+```{r}
+#| include: false
+library(httr)
+library(tidyverse)
+library(stringr)
+library(rvest)
+library(polite)
+library(sf)
+library(maps)
+library(viridis)
+library(leaflet)
+library(htmltools)
+
+```
+
+```{r}
+# Step 0: Check that scraping is allowed
+robotstxt::paths_allowed("https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(nominal)")
+
+# Step 1: read_html()
+gdp_page <- read_html("https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(nominal)")
+
+# Step 2: html_nodes()
+tables <- html_nodes(gdp_page, css = "table") 
+tables  # have to guesstimate which table contains our desired info
+
+# Step 3: html_table()
+html_table(tables, header = TRUE, fill = TRUE)    # find the right table
+gdp_table <- html_table(tables, header = TRUE, fill = TRUE)[[3]]  
+gdp_table
+```
+
+```{r}
+#| echo: false
+GDP_data <- gdp_table |>
+  select(1,2) #only select the first columns
+```
+
+```{r}
+#| echo: false
+GDP_data <- GDP_data |>
+  rename("Forecast" = `IMF[1][12]`) |> 
+  filter(!row_number() %in% c(1, 2)) # Rename the second column to "Forecast" and remove unnecessary rows
+
+```
+
+```{r}
+# Step 0: Check that scraping is allowed
+robotstxt::paths_allowed("https://en.wikipedia.org/wiki/List_of_countries_and_dependencies_by_population")
+
+# Step 1: read_html()
+pop_page <- read_html("https://en.wikipedia.org/wiki/List_of_countries_and_dependencies_by_population")
+
+# Step 2: html_nodes()
+tables <- html_nodes(pop_page, css = "table") 
+tables  # have to guesstimate which table contains our desired info
+
+# Step 3: html_table()
+html_table(tables, header = TRUE, fill = TRUE)    # find the right table
+pop_table <- html_table(tables, header = TRUE, fill = TRUE)[[1]]  
+pop_table
+```
+
+```{r}
+#| echo: false
+POP_data <- pop_table |> # Select only the first two columns (location and population) from the GDP table
+  select(1,2)
+```
+
+```{r}
+#| echo: false
+POP_data <- POP_data |> 
+  rename("Country/Territory" = `Location`) |> #rename Location to be Country/Territory to be more accurate
+  filter(!row_number() %in% c(1)) #remove the unnecessary row.
+```
+
+```{r}
+#| echo: false
+GDP_data <- GDP_data |> left_join(POP_data) #combines the GDP data with the population data using join
+```
+
+```{r}
+world_data <- GDP_data #rename to be more accurate
+```
+
+## Ethics
+
+Ethically, we made sure to check the robots.txt file and are not getting personal data from users. We made sure to not use any specific data, and are using data that is widely public knowledge.
+
+## Insights and Questions
+
+Using this data, we wonder what trends could arise between population and GDP. How can we visualize population growth and GDP growth? What is the connection between high GDP per capita and geographical location? These are some of the questions that we wonder about this tibble we created.
+
+##Summary This code scrapes GDP and population data from Wikipedia, cleans and merges the datasets, and prepares it for future analysis The dataset, world_data, contains GDP forecasts and population figures by country. We can use the data set to analyze trends between population and forecasted GDP by country. This can be presented using a variety of visual techniques such as leaflet maps, plots, and graphs.
