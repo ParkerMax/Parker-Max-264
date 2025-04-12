@@ -5,7 +5,7 @@ about:
   template: trestles
   image-width: 20em
   image-shape: rounded
-  image: docs/images/DSC07483.jpg
+  image: DSC07483.jpg
 ---
 
 ## Hi, I'm **Parker!**
