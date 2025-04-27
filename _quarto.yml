@@ -21,6 +21,8 @@ website:
             text: "Mini-Project 1: Maps"
           - href: mini-project2.qmd
             text: "Mini-Project 2: Data Acquisition"
+          - href: MP4.qmd
+            text: "Mini-Project 4: Text Analysis"
 
 format:
   html:
