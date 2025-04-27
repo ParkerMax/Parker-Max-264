@@ -13,9 +13,9 @@ Initially, we wanted to analyze data related to running, collegiate D3 track and
 
 ## Sources
 
-"[https://en.wikipedia.org/wiki/List_of_countries_by_GDP\_(nominal)":](https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(nominal)":) Used to get our nominal GDP data from wikipedia. Table consists of various data, but we only use Country and GDP.
+"[https://en.wikipedia.org/wiki/List_of_countries_by_GDP\_(nominal)":](https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(nominal)%22:) Used to get our nominal GDP data from wikipedia. Table consists of various data, but we only use Country and GDP.
 
-"[https://en.wikipedia.org/wiki/List_of_countries_and_dependencies_by_population":](https://en.wikipedia.org/wiki/List_of_countries_and_dependencies_by_population":) Used to get our population data from wikipedia. Table consists of various data, but we only use Country and population.
+"[https://en.wikipedia.org/wiki/List_of_countries_and_dependencies_by_population":](https://en.wikipedia.org/wiki/List_of_countries_and_dependencies_by_population%22:) Used to get our population data from wikipedia. Table consists of various data, but we only use Country and population.
 
 ```{r}
 #| include: false

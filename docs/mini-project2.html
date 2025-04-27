@@ -147,6 +147,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="./mini-project2.html">
  <span class="dropdown-text">Mini-Project 2: Data Acquisition</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./MP4.html">
+ <span class="dropdown-text">Mini-Project 4: Text Analysis</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -255,15 +259,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    `Country/Territory` `IMF[1][12]` `IMF[1][12]` `World Bank[13]`
    &lt;chr&gt;               &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt;           
  1 Country/Territory   Forecast     Year         Estimate        
- 2 World               115,494,312  2025         105,435,540     
- 3 United States       30,338,000   2025         27,360,935      
- 4 China               19,535,000   [n 1]2025    17,794,782      
- 5 Germany             4,922,000    2025         4,456,081       
- 6 Japan               4,390,000    2025         4,212,945       
- 7 India               4,270,000    2025         3,549,919       
- 8 United Kingdom      3,731,000    2025         3,340,032       
- 9 France              3,284,000    2025         3,030,904       
-10 Italy               2,460,000    2025         2,254,851       
+ 2 World               113,795,678  2025         105,435,540     
+ 3 United States       30,507,217   2025         27,360,935      
+ 4 China               19,231,705   [n 1]2025    17,794,782      
+ 5 Germany             4,744,804    2025         4,456,081       
+ 6 India               4,187,017    2025         3,549,919       
+ 7 Japan               4,186,431    2025         4,212,945       
+ 8 United Kingdom      3,839,180    2025         3,340,032       
+ 9 France              3,211,292    2025         3,030,904       
+10 Italy               2,422,855    2025         2,254,851       
 # ℹ 201 more rows
 # ℹ 3 more variables: `World Bank[13]` &lt;chr&gt;, `United Nations[14]` &lt;chr&gt;,
 #   `United Nations[14]` &lt;chr&gt;
@@ -272,7 +276,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 # A tibble: 9 × 2
   .mw-parser-output .navbar{display:inline;font-size:88…¹ .mw-parser-output .n…²
   &lt;chr&gt;                                                   &lt;chr&gt;                 
-1 "Trade"                                                 "Account balance\n% o…
+1 "Trade"                                                 "Account balance\nExp…
 2 "Investment"                                            "FDI received\npast\n…
 3 "Funds"                                                 "Forex reserves\nGold…
 4 "Budget and debt"                                       "Government budget\nP…
@@ -333,15 +337,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    `Country/Territory` `IMF[1][12]` `IMF[1][12]` `World Bank[13]`
    &lt;chr&gt;               &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt;           
  1 Country/Territory   Forecast     Year         Estimate        
- 2 World               115,494,312  2025         105,435,540     
- 3 United States       30,338,000   2025         27,360,935      
- 4 China               19,535,000   [n 1]2025    17,794,782      
- 5 Germany             4,922,000    2025         4,456,081       
- 6 Japan               4,390,000    2025         4,212,945       
- 7 India               4,270,000    2025         3,549,919       
- 8 United Kingdom      3,731,000    2025         3,340,032       
- 9 France              3,284,000    2025         3,030,904       
-10 Italy               2,460,000    2025         2,254,851       
+ 2 World               113,795,678  2025         105,435,540     
+ 3 United States       30,507,217   2025         27,360,935      
+ 4 China               19,231,705   [n 1]2025    17,794,782      
+ 5 Germany             4,744,804    2025         4,456,081       
+ 6 India               4,187,017    2025         3,549,919       
+ 7 Japan               4,186,431    2025         4,212,945       
+ 8 United Kingdom      3,839,180    2025         3,340,032       
+ 9 France              3,211,292    2025         3,030,904       
+10 Italy               2,422,855    2025         2,254,851       
 # ℹ 201 more rows
 # ℹ 3 more variables: `World Bank[13]` &lt;chr&gt;, `United Nations[14]` &lt;chr&gt;,
 #   `United Nations[14]` &lt;chr&gt;</code></pre>
@@ -376,7 +380,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 # A tibble: 240 × 6
    Location      Population    `% ofworld` Date     Source (official or …¹ Notes
    &lt;chr&gt;         &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt;                  &lt;chr&gt;
- 1 World         8,137,000,000 100%        10 Apr … UN projection[1][3]    ""   
+ 1 World         8,139,410,960 100%        26 Apr … UN projection[1][3]    ""   
  2 India         1,413,324,000 17.3%       1 Mar 2… Official projection[4] "[b]"
  3 China         1,408,280,000 17.2%       31 Dec … Official estimate[5]   "[c]"
  4 United States 340,110,988   4.2%        1 Jul 2… Official estimate[6]   "[d]"
@@ -422,7 +426,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code># A tibble: 240 × 6
    Location      Population    `% ofworld` Date     Source (official or …¹ Notes
    &lt;chr&gt;         &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt;                  &lt;chr&gt;
- 1 World         8,137,000,000 100%        10 Apr … UN projection[1][3]    ""   
+ 1 World         8,139,410,960 100%        26 Apr … UN projection[1][3]    ""   
  2 India         1,413,324,000 17.3%       1 Mar 2… Official projection[4] "[b]"
  3 China         1,408,280,000 17.2%       31 Dec … Official estimate[5]   "[c]"
  4 United States 340,110,988   4.2%        1 Jul 2… Official estimate[6]   "[d]"
@@ -880,19 +884,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-<p>© Parker Max, 2025<br> All content licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></p>
-</div>   
-    <div class="nav-footer-center">
-      &nbsp;
-    </div>
-    <div class="nav-footer-right">
-<p>Site built with <a href="https://quarto.org/">Quarto</a></p>
-</div>
-  </div>
-</footer>
 
 
 
